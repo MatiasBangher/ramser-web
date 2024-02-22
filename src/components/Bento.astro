@@ -1,0 +1,75 @@
+---
+import BentoItem from './BentoItem.astro'
+---
+    
+<div class="pt-20  text-center text-6xl font-family">SERVICIOS</div>
+
+<section
+    class={`
+    w-full max-w-[1600px]
+    grid grid-cols-10 auto-rows-[20rem] gap-4 
+    mx-auto pl-16 pr-16 pt-10
+    
+    `}
+    >
+    <BentoItem class="col-span-10 md:col-span-4" title="Control de plagas">
+        <div 
+            slot="image" 
+            class="absolute left-0 top-0 bottom-0 w-full h-full
+            group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+            bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+            style="background-image: url('/cl.png')"
+        >
+        </div>
+        <p slot="content" class="max-w-xl ">
+            Ofrecemos a nuestro clientes la aplicación de tratamiento y tecnología mas recientes,
+            mediente el concepto de <strong>gestión integrada de plagas</strong> (M.I.P).
+        </p>
+    </BentoItem>
+    <BentoItem class="col-span-10 md:col-span-6" title="Control de Roedores"><div 
+        slot="image" 
+        class="absolute left-0 top-0 bottom-0 w-full h-full
+        group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+        bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+        style="background-image: url('/ratita.png')"
+    >
+    </div>
+     <p slot="content" class="max-w-xl ">
+        <p slot="content" class="max-w-xl ">
+            Nuestros servicios garantizan la protección con soluciones eficaces y seguras. Lo realizamos en 
+            <strong>comercios, fabricas, plantas de acopios, almacenes o cualquier tipo de instalaciones.</strong>  
+        </p>
+    </p></BentoItem>
+    <BentoItem class="col-span-10 md:col-span-6" title="Saneamiento ambiental">
+        <div 
+            slot="image" 
+            class="absolute left-0 top-0 bottom-0 w-full h-full
+            group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+            bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+            style="background-image: url('/saneando.jpg')"
+        >
+        </div>
+        <p slot="content" class="max-w-xl">Nos especializamos en el saneamiento ambiental para promover un entorno limpio y saludable!
+            Nuestros servicios abarcan el control de la contaminación y la prevención de enfermedades transmitidas por el medio ambiente.</p>
+    </BentoItem>
+    <BentoItem class="col-span-10 md:col-span-4" title="Equipos">
+        <div 
+            slot="image" 
+            class="absolute left-0 top-0 bottom-0 w-full h-full
+            group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+            bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+            style="background-image: url('/fumigando.jpg')"
+        >
+        </div>
+        <p slot="content" class="max-w-xl">Contamos con un equipo de profesionales altamente capacitados que utilizan 
+            la última tecnología y los mejores productos para brindarte soluciones efectivas. 
+            <strong>Tu tranquilidad y la protección de tu hogar o negocio son nuestra prioridad.</strong></p>
+    </BentoItem>
+
+</section>
+<div >
+    <h1 class="pt-20 text-center text-4xl font-family">HABILITACIÓN PROVINCIAL N°2952</h1>
+    <h3 class=" text-center text-2xl font-family">Ministerio de Salud - Provincia del Chaco</h3>
+</div>
+
+<div class="pt-20 text-center text-4xl font-mono">RAPIDEZ  -  EFICACIA  -  DISCIPLINA  -  CONFIANZA </div>
