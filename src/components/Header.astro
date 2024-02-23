@@ -1,24 +1,38 @@
+---
+---
 <header>
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xlbg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <a href="" class="flex items-center">
             <img src="/logo.png" class="mr-3 h-6 sm:h-9" alt="RamSer S.S" />
-            <span class="self-center text-xl font-family whitespace-nowrap dark:text-green-400">RAMSER S.S</span>
+            <span class="self-center text-xl font-family whitespace-nowrap dark:text-green-400">RAMSER S.A.S</span>
         </a>
-        <nav class=" col-span-1 justify-between">
-            <ul class="flex flex-col p-2 mt-4 px-5 font-family font-bold text-lg lg:flex-row lg:space-x-8 lg:mt-0">
-                <li>
-                    <a href="#" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Inicio</a>
-                </li>
-                <li>
+        <nav class="col-span-1 justify-between">
+            <div class="block md:hidden">
+                <botton id="botton" class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"> 
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                </botton>
+            </div>
+            <div id="menu" class="md:static absolute bg-gray-800 left-0 md:py-0 py-4 -z-[-1] w-full flex-grow md:flex md:items-center md:w-auto">
+                <div class="flex flex-col p-2 mt-4 px-5 font-family font-bold text-lg md:flex-row md:space-x-8 lg:mt-0 ">
+                        
+                    <a href="#" class="block py-2 pr-4 pl-3 border-b text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Inicio</a>
+                
                     <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-green-400 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-green-600 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Nosotros</a>
-                </li>
-                <li>
+                
                     <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-green-400 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-green-600 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Servicios</a>
-                </li>
-                <li>
+                
                     <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-green-400 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-green-600 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Galeria</a>
-                </li>
-            </ul>
+                </div>
+            </div>
         </nav>
     </div>
 </header>
+
+<script>
+    const boton = document.querySelector('#botton');
+    const menu = document.querySelector('#menu');
+
+    boton?.addEventListener('click', ()=>{
+        menu?.classList.toggle('hidden')
+    })
+</script>

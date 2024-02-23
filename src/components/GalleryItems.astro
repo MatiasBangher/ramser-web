@@ -1,0 +1,18 @@
+---
+
+---
+<article class={`
+    ${Astro.props.class}
+    relative rounded-2xl
+    blackdrop-blur-md
+    border border-black/10
+    shadow-inner shadow-white/10
+    overflow-hidden
+    group
+`}
+>
+    <div class="absolute z-10 bottom-0 top-0 w-full h-full">
+    </div>
+    <slot name = "image"/>
+    
+</article>

@@ -1,0 +1,77 @@
+---
+import GalleryItems from './GalleryItems.astro'
+---
+
+<div class="pt-20 text-center text-6xl font-mono">
+    Nuestros Trabajos
+</div>
+
+<section
+    class={`
+    w-full max-w-[1600px]
+    grid grid-cols-9 auto-rows-[20rem] gap-4 
+    mx-auto pl-16 pr-16 pt-10
+    pb-16
+    `}
+    >
+    <GalleryItems class="col-span-9 md:col-span-3">
+        <div 
+            slot="image" 
+            class="absolute left-0 top-0 bottom-0 w-full h-full
+            group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+            bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+            style="background-image: url('/trab1.jpg')"
+        >
+        </div>
+    </GalleryItems>
+    <GalleryItems class="col-span-9 md:col-span-3"><div 
+        slot="image" 
+        class="absolute left-0 top-0 bottom-0 w-full h-full
+        group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+        bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+        style="background-image: url('/trab2.jpg')"
+    >
+    </div>
+    </GalleryItems>
+    <GalleryItems class="col-span-9 md:col-span-3" >
+        <div 
+            slot="image" 
+            class="absolute left-0 top-0 bottom-0 w-full h-full
+            group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+            bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+            style="background-image: url('/fumigando.jpg')"
+        >
+        </div>
+    </GalleryItems>
+    <GalleryItems class="col-span-9 md:col-span-3">
+        <div 
+            slot="image" 
+            class="absolute left-0 top-0 bottom-0 w-full h-full
+            group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+            bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+            style="background-image: url('/trab3.jpg')"
+        >
+        </div>
+    </GalleryItems>
+    <GalleryItems class="col-span-9 md:col-span-3">
+        <div 
+            slot="image" 
+            class="absolute left-0 top-0 bottom-0 w-full h-full
+            group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+            bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+            style="background-image: url('/trab4.jpg')"
+        >
+        </div>
+    </GalleryItems>
+    <GalleryItems class="col-span-9 md:col-span-3">
+        <div 
+            slot="image" 
+            class="absolute left-0 top-0 bottom-0 w-full h-full
+            group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+            bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+            style="background-image: url('/trab5.jpg')"
+        >
+        </div>
+    </GalleryItems>
+
+</section>

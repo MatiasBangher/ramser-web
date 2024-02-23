@@ -8,7 +8,6 @@ const {title} = Astro.props
 ---
 <article class={`
     ${Astro.props.class}
-    col-span-5
     relative rounded-2xl
     blackdrop-blur-md
     border border-black/10
@@ -22,7 +21,7 @@ const {title} = Astro.props
     <slot name = "image"/>
     
     <div class="relative select-none flex flex-col gap-1 p-6 text-lg z-20 justify-end h-full">
-        <h2 class="text-3xl font-bold text-balance text-white mb-4">{title}</h2>
+        {title && <h2 class="text-3xl font-bold text-balance text-white mb-4">{title}</h2>}
        <slot name = "content"/>
        
     </div>
