@@ -19,7 +19,7 @@ import BentoItem from './BentoItem.astro'
             class="absolute left-0 top-0 bottom-0 w-full h-full
             group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
             bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
-            style="background-image: url('/cl.png')"
+            style="background-image: url('/cl.webp')"
         >
         </div>
         <p slot="content" class="max-w-xl text-base lg:text-xl">
@@ -27,30 +27,30 @@ import BentoItem from './BentoItem.astro'
             mediente el concepto de <strong>gestión integrada de plagas</strong> (M.I.P).
         </p>
     </BentoItem>
-    <BentoItem class="col-span-10 md:col-span-6" title="Control de Roedores"><div 
-        slot="image" 
-        class="absolute left-0 top-0 bottom-0 w-full h-full
-        group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
-        bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
-        style="background-image: url('/ratita.png')"
-    >
-    </div>
-     <p slot="content" class="max-w-xl ">
+    <BentoItem class="col-span-10 md:col-span-6" title="Control de Roedores">
+            <div 
+            slot="image" 
+            class="absolute left-0 top-0 bottom-0 w-full h-full
+            group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
+            bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
+            style="background-image: url('/ratita.webp')"
+        >
+        </div>
         <p slot="content" class="max-w-xl text-base lg:text-xl">
             Nuestros servicios garantizan la protección con soluciones eficaces y seguras. Lo realizamos en 
             <strong>comercios, fabricas, plantas de acopios, almacenes o cualquier tipo de instalaciones.</strong>  
         </p>
-    </p></BentoItem>
+    </BentoItem>
     <BentoItem class="col-span-10 md:col-span-6" title="Saneamiento ambiental">
         <div 
             slot="image" 
             class="absolute left-0 top-0 bottom-0 w-full h-full
             group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
             bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
-            style="background-image: url('/saneando.jpg')"
+            style="background-image: url('/saneando.webp')"
         >
         </div>
-        <p slot="content" class="max-w-xl text-base lg:text-xl ">Nos especializamos en el saneamiento ambiental para promover un entorno limpio y saludable!
+        <p slot="content" class="max-w-xl text-base lg:text-xl ">
             Nuestros servicios abarcan el control de la contaminación y la prevención de enfermedades transmitidas por el medio ambiente.</p>
     </BentoItem>
     <BentoItem class="col-span-10 md:col-span-4" title="Equipos">
@@ -59,7 +59,7 @@ import BentoItem from './BentoItem.astro'
             class="absolute left-0 top-0 bottom-0 w-full h-full
             group-hover:scale-110 transition-scale duration-1000 ease-in-out opacity-90
             bg-blend-luminosity bg-left bg-cover bg-no-repeat z-0"
-            style="background-image: url('/fumigando.jpg')"
+            style="background-image: url('/fumigando.webp')"
         >
         </div>
         <p slot="content" class="max-w-xl text-base lg:text-xl">Contamos con un equipo de profesionales altamente capacitados que utilizan 
@@ -68,17 +68,19 @@ import BentoItem from './BentoItem.astro'
     </BentoItem>
 
 </section>
-<div >
-    <h1 class="pt-20 text-center text-4xl font-family">HABILITACIÓN PROVINCIAL N°2952</h1>
-    <h3 class=" text-center text-2xl font-family">Ministerio de Salud - Provincia del Chaco</h3>
+<div class="animate-pop animate-on-scroll flex justify-center  pt-8">
+    <div class="max-w-lg rounded bg-black/30 overflow-hidden shadow-lg">
+        <div class="px-6 py-4">
+        <div class="font-bold text-base text-center lg:text-2xl mb-2">HABILITACIÓN PROVINCIAL N°2952</div>
+            <p class="text-white text-sm text-center lg:text-base">
+                Ministerio de Salud - Provincia del Chaco     </p>
+        
+        </div>    
+    </div>
 </div>
 
-<div class="col-span-10 flex items-center justify-center w-5/6 pt-20 pl-48">
-    <ul class="rounded-2xl justify-between flex flex-col bg-green-700 mt-4 font-family font-semibold text-lg md:flex-row md:space-x-8 md:mt-0">
-        <li class="col-span-10 py-2 pr-4 pl-3">RAPIDEZ </li>
-        <li class="col-span-10 py-2 pr-4 pl-3">EFICACIA</li>  
-        <li class="col-span-10 py-2 pr-4 pl-3">DISCIPLINA </li>
-        <li class="col-span-10 py-2 pr-4 pl-3">CONFIANZA </li>
-    </ul>
+<div class="text-center text-base md:text-2xl pt-20 m-0 font-family">
+    RAPIDEZ - EFICACIA - DISCIPLINA - CONFIANZA 
+                      
     
 </div>
