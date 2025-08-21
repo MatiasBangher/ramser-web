@@ -102,7 +102,7 @@ import BentoItem from './BentoItem.astro'
     </div>
 </div>
 
-<div class="text-center text-base md:text-2xl pt-20 m-0 font-family" id="values-section">
+<div class="text-center text-base md:text-2xl pt-20 m-0 font-family pb-10" id="values-section">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
         <div class="text-center group" id="value-1">
             <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500/30 transition-colors duration-300">
@@ -142,6 +142,113 @@ import BentoItem from './BentoItem.astro'
         </div>
     </div>
 </div>
+
+<!-- Misión, Visión y Valores Section -->
+<section class="relative py-10 bg-gradient-to-br from-gray-950 via-gray-900 to-green-950" id="mision-vision-valores">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center px-4 py-2 bg-green-600/20 border border-green-500/30 rounded-full text-green-300 text-sm font-medium mb-6">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                </svg>
+                Nuestra Identidad
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+                Misión, <span class="text-green-400">Visión</span> y Valores
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Los pilares que guían nuestro compromiso con la excelencia y el servicio profesional
+            </p>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            <!-- Misión Card -->
+            <div class="bg-gray-900/50 border border-green-500/30 rounded-2xl p-8 hover:border-green-400/50 transition-all duration-300" id="mision-card">
+                <!-- Number Badge -->
+                <div class="inline-flex items-center justify-center w-12 h-12 bg-green-500/20 rounded-full mb-6">
+                    <span class="text-2xl font-bold text-green-400">01</span>
+                </div>
+                
+                <!-- Title -->
+                <h3 class="text-2xl font-bold text-white mb-4">
+                    MISIÓN
+                </h3>
+                
+                <!-- Divider -->
+                <div class="w-16 h-0.5 bg-green-500/50 mb-6"></div>
+                
+                <!-- Content -->
+                <p class="text-gray-300 leading-relaxed text-lg">
+                    Contribuir a la salud de nuestros clientes y el medio ambiente, 
+                    solucionando rápida y efectivamente los problemas de plagas urbanas, 
+                    rurales e industriales, así como prevenir nuevas infestaciones, 
+                    ofreciendo servicios de control profesional y productos de calidad 
+                    para su control.
+                </p>
+            </div>
+
+            <!-- Valores Card -->
+            <div class="bg-gray-900/50 border border-green-500/30 rounded-2xl p-8 hover:border-green-400/50 transition-all duration-300" id="valores-card">
+                <!-- Number Badge -->
+                <div class="inline-flex items-center justify-center w-12 h-12 bg-green-500/20 rounded-full mb-6">
+                    <span class="text-2xl font-bold text-green-400">02</span>
+                </div>
+                
+                <!-- Title -->
+                <h3 class="text-2xl font-bold text-white mb-4">
+                    VALORES
+                </h3>
+                
+                <!-- Divider -->
+                <div class="w-16 h-0.5 bg-green-500/50 mb-6"></div>
+                
+                <!-- Content -->
+                <p class="text-gray-300 leading-relaxed text-lg">
+                    Compromiso, honestidad y disciplina que creemos que todos nuestros 
+                    clientes merecen, con los cuales creamos una relación de confianza 
+                    para solucionar sus problemas de la mejor manera para que sigan 
+                    confiando en nosotros.
+                </p>
+            </div>
+
+            <!-- Visión Card -->
+            <div class="bg-gray-900/50 border border-green-500/30 rounded-2xl p-8 hover:border-green-400/50 transition-all duration-300" id="vision-card">
+                <!-- Number Badge -->
+                <div class="inline-flex items-center justify-center w-12 h-12 bg-green-500/20 rounded-full mb-6">
+                    <span class="text-2xl font-bold text-green-400">03</span>
+                </div>
+                
+                <!-- Title -->
+                <h3 class="text-2xl font-bold text-white mb-4">
+                    VISIÓN
+                </h3>
+                
+                <!-- Divider -->
+                <div class="w-16 h-0.5 bg-green-500/50 mb-6"></div>
+                
+                <!-- Content -->
+                <p class="text-gray-300 leading-relaxed text-lg">
+                    Nos proponemos ser la empresa líder en el mercado en la prestación 
+                    de servicios, gestión y control de plagas, buscando siempre la 
+                    confianza de nuestros clientes y proveedores, basándonos en la 
+                    experiencia y profesionalismo de nuestro equipo.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="text-center mt-16">
+            <div class="inline-flex items-center px-6 py-3 bg-green-600/20 border border-green-500/30 rounded-full text-green-300 text-sm font-medium backdrop-blur-sm">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Comprometidos con la Excelencia
+            </div>
+        </div>
+    </div>
+</section>
 
 <script>
     import { gsap } from 'gsap';
@@ -248,6 +355,35 @@ import BentoItem from './BentoItem.astro'
         }
     );
 
+    // Misión, Visión y Valores animations - DISABLED TO FIX VISIBILITY ISSUE
+    // const misionVisionTl = gsap.timeline({
+    //     scrollTrigger: {
+    //         trigger: "#mision-vision-valores",
+    //         start: "top 80%",
+    //         end: "bottom 20%",
+    //         toggleActions: "play none none none"
+    //     }
+    // });
+
+    // misionVisionTl.from("#mision-card", {
+    //     y: 50,
+    //     opacity: 0,
+    //     duration: 0.8,
+    //     ease: "power2.out"
+    // })
+    // .from("#valores-card", {
+    //     y: 50,
+    //     opacity: 0,
+    //     duration: 0.8,
+    //     ease: "power2.out"
+    // }, "-=0.4")
+    // .from("#vision-card", {
+    //     y: 50,
+    //     opacity: 0,
+    //     duration: 0.8,
+    //     ease: "power2.out"
+    // }, "-=0.4");
+
     // Hover animations for service cards
     document.querySelectorAll('#service-1, #service-2, #service-3, #service-4').forEach(card => {
         card.addEventListener('mouseenter', () => {
@@ -266,4 +402,23 @@ import BentoItem from './BentoItem.astro'
             });
         });
     });
+
+    // Hover animations for mission/vision cards - DISABLED TO FIX VISIBILITY ISSUE
+    // document.querySelectorAll('#mision-card, #valores-card, #vision-card').forEach(card => {
+    //     card.addEventListener('mouseenter', () => {
+    //         gsap.to(card, {
+    //             scale: 1.02,
+    //             duration: 0.3,
+    //             ease: "power2.out"
+    //         });
+    //     });
+
+    //     card.addEventListener('mouseleave', () => {
+    //         gsap.to(card, {
+    //             scale: 1,
+    //             duration: 0.3,
+    //             ease: "power2.out"
+    //         });
+    //     });
+    // });
 </script>

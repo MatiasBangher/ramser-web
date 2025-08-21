@@ -51,16 +51,16 @@
 
             <!-- Mobile menu button -->
             <button id="mobile-menu-button" 
-                    class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-green-400 hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 transition-colors duration-300"
+                    class="md:hidden relative inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-300 hover:text-green-400 hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-950 transition-all duration-300"
+                    onclick="toggleMobileMenu(event)"
                     aria-expanded="false"
                     aria-controls="mobile-menu"
                     aria-label="Abrir menú de navegación">
-                <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-                <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <div class="flex flex-col items-center justify-center w-6 h-6">
+                    <span id="line1" class="block w-6 h-0.5 bg-current transform transition-all duration-300"></span>
+                    <span id="line2" class="block w-6 h-0.5 bg-current transform transition-all duration-300 mt-1.5"></span>
+                    <span id="line3" class="block w-6 h-0.5 bg-current transform transition-all duration-300 mt-1.5"></span>
+                </div>
             </button>
         </div>
 
@@ -89,117 +89,99 @@
                         Contactar por WhatsApp
                     </a>
                 </div>
-                </div>
             </div>
+        </div>
     </div>
 </header>
 
 <script>
-    import { gsap } from 'gsap';
-    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  // Función global para el toggle del menú móvil
+  function toggleMobileMenu(event?: Event) {
+    // Prevenir que el evento se propague al document
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
     
-    gsap.registerPlugin(ScrollTrigger);
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const line1 = document.getElementById('line1');
+    const line2 = document.getElementById('line2');
+    const line3 = document.getElementById('line3');
 
-    // Header scroll effect
+    if (!mobileMenu || !mobileMenuButton) {
+      return;
+    }
+
+    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+
+    if (isExpanded) {
+      // Cerrar menú
+      mobileMenu.classList.add('hidden');
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+      if (line1) line1.style.transform = 'rotate(0deg) translateY(0px)';
+      if (line2) line2.style.opacity = '1';
+      if (line3) line3.style.transform = 'rotate(0deg) translateY(0px)';
+    } else {
+      // Abrir menú
+      mobileMenu.classList.remove('hidden');
+      mobileMenuButton.setAttribute('aria-expanded', 'true');
+      if (line1) line1.style.transform = 'rotate(45deg) translateY(6px)';
+      if (line2) line2.style.opacity = '0';
+      if (line3) line3.style.transform = 'rotate(-45deg) translateY(-6px)';
+    }
+  }
+
+  // Inicialización cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', function () {
     const header = document.getElementById('header');
-    let lastScrollY = window.scrollY;
-
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        
-        if (currentScrollY > 100) {
-            header?.classList.add('bg-gray-950/98', 'shadow-xl');
-            header?.classList.remove('bg-gray-950/95', 'shadow-lg');
-        } else {
-            header?.classList.remove('bg-gray-950/98', 'shadow-xl');
-            header?.classList.add('bg-gray-950/95', 'shadow-lg');
-        }
-
-        // Hide/show header on scroll
-        if (currentScrollY > lastScrollY && currentScrollY > 200) {
-            gsap.to(header, { y: -100, duration: 0.3 });
-        } else {
-            gsap.to(header, { y: 0, duration: 0.3 });
-        }
-        
-        lastScrollY = currentScrollY;
-    });
-
-    // Mobile menu toggle
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcons = mobileMenuButton?.querySelectorAll('svg');
 
-    mobileMenuButton?.addEventListener('click', () => {
-        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-        
-        if (isExpanded) {
-            // Close menu
-            mobileMenu?.classList.add('hidden');
-            mobileMenuButton.setAttribute('aria-expanded', 'false');
-            menuIcons?.[0]?.classList.remove('hidden');
-            menuIcons?.[1]?.classList.add('hidden');
-            
-            gsap.to(mobileMenu, { 
-                height: 0, 
-                opacity: 0, 
-                duration: 0.3,
-                ease: "power2.out"
-            });
-        } else {
-            // Open menu
-            mobileMenu?.classList.remove('hidden');
-            mobileMenuButton.setAttribute('aria-expanded', 'true');
-            menuIcons?.[0]?.classList.add('hidden');
-            menuIcons?.[1]?.classList.remove('hidden');
-            
-            gsap.fromTo(mobileMenu, 
-                { height: 0, opacity: 0 },
-                { 
-                    height: 'auto', 
-                    opacity: 1, 
-                    duration: 0.3,
-                    ease: "power2.out"
-                }
-            );
+    // Agregar event listener al botón del menú móvil
+    if (mobileMenuButton) {
+      mobileMenuButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMobileMenu(e);
+      });
+    }
+
+    // Smooth scroll para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const href = anchor.getAttribute('href');
+        const target = href ? document.querySelector(href) : null;
+        if (!target || !header) return;
+
+        const headerHeight = header.offsetHeight || 0;
+        const targetY = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+
+        // Cerrar menú móvil si estaba abierto
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          toggleMobileMenu(e);
         }
+      });
     });
 
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', (e) => {
-            e.preventDefault();
-            const href = (anchor as HTMLAnchorElement).getAttribute('href');
-            const target = href ? document.querySelector(href) : null;
-            if (target) {
-                const headerHeight = header?.offsetHeight || 0;
-                const targetPosition = (target as HTMLElement).offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                    mobileMenuButton?.click();
-                }
-            }
-        });
+    // Cerrar menú al hacer clic fuera de él
+    document.addEventListener('click', function(event) {
+      if (mobileMenu && !mobileMenu.classList.contains('hidden') && mobileMenuButton) {
+        const target = event.target as Node;
+        // Solo cerrar si el clic NO fue en el botón del menú ni en el menú mismo
+        if (target && 
+            !mobileMenuButton.contains(target) && 
+            !mobileMenu.contains(target) && 
+            !mobileMenuButton.isSameNode(target)) {
+          toggleMobileMenu(event);
+        }
+      }
     });
+  });
 
-    // Animate nav links on scroll
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach((link, i) => {
-        gsap.fromTo(link, 
-            { y: -20, opacity: 0 },
-            { 
-                y: 0, 
-                opacity: 1, 
-                duration: 0.6,
-                delay: i * 0.1,
-                ease: "power2.out"
-            }
-        );
-    });
+  // También agregar la función al window para debugging
+  (window as any).toggleMobileMenu = toggleMobileMenu;
 </script>

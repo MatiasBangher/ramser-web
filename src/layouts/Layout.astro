@@ -3,10 +3,11 @@ import Header from '../components/Header.astro';
 interface Props {
 	description: string;
 	title: string;
+	keywords: string;
 }
 
-const { description ,title } = Astro.props;
-const siteUrl = Astro.url?.origin ?? 'https://example.com';
+const { description ,title, keywords } = Astro.props;
+const siteUrl = Astro.url?.origin ?? 'https://ramser.com.ar';
 const canonical = new URL(Astro.url?.pathname ?? '/', siteUrl).toString();
 const ogImage = '/logo.png';
 const business = {
@@ -14,16 +15,44 @@ const business = {
   legalName: 'RamSer S.A.S Saneamiento Ambiental',
   url: siteUrl,
   telephone: '+54-3644-598253',
+  whatsapp: '+54-3644-598253',
   email: 'ramonbangher@yahoo.com.ar',
   address: {
     streetAddress: 'Av. Antártida Argentina',
     addressLocality: 'Pampa del Infierno',
     addressRegion: 'Chaco',
-    addressCountry: 'AR'
+    addressCountry: 'AR',
+    postalCode: '3708'
   },
+  geo: {
+    latitude: '-26.5051',
+    longitude: '-61.1744'
+  },
+  openingHours: 'Mo-Fr 08:00-18:00, Sa 08:00-12:00',
+  priceRange: '$$',
   sameAs: [
     'https://wa.me/543644598253?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios',
     'https://www.facebook.com/profile.php?id=100064195952988'
+  ],
+  services: [
+    'Control de Plagas',
+    'Fumigación',
+    'Desinsectación',
+    'Desratización',
+    'Desinfección',
+    'Saneamiento Ambiental',
+    'Control de Roedores',
+    'Control de Insectos',
+    'Fumigación de Viviendas',
+    'Fumigación Comercial',
+    'Fumigación Industrial'
+  ],
+  areasServed: [
+    'Pampa del Infierno',
+    'Chaco',
+    'Región NEA',
+    'Noroeste Argentino',
+    'Argentina'
   ]
 };
 ---
@@ -33,49 +62,142 @@ const business = {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/png" href="/logo.png" />
 		<link rel="canonical" href={canonical} />
-		<meta name="robots" content="index, follow" />
+		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 		<meta name="theme-color" content="#16a34a" />
+		<meta name="author" content="RAMSER S.A.S" />
+		<meta name="copyright" content="RAMSER S.A.S" />
+		<meta name="keywords" content={keywords} />
+		<!-- Keywords específicas para fumigación y saneamiento -->
+		<meta name="keywords" content="fumigación, control de plagas, desinsectación, desratización, saneamiento ambiental, Pampa del Infierno, Chaco, fumigador, exterminador, plagas, roedores, insectos, desinfección, empresa fumigación, fumigación viviendas, fumigación comercial, fumigación industrial, control roedores, control insectos, habilitación provincial, NEA, noroeste argentino" />
+		
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="es_AR" />
-		<meta property="og:site_name" content="RAMSER S.A.S" />
+		<meta property="og:site_name" content="RAMSER S.A.S - Saneamiento Ambiental" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:image" content={ogImage} />
-		<meta property="og:image:alt" content="RAMSER S.A.S - Saneamiento Ambiental" />
+		<meta property="og:image:alt" content="RAMSER S.A.S - Empresa de Fumigación y Saneamiento Ambiental en Pampa del Infierno, Chaco" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content="RAMSER S.A.S - Fumigación y Control de Plagas" />
+		
 		<!-- Preconnect/Performance hints -->
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		
-		<title>{title}</title>
-
+		<!-- Local Business Schema -->
 		<script type="application/ld+json">{JSON.stringify({
 		  '@context': 'https://schema.org',
 		  '@type': 'LocalBusiness',
+		  '@id': `${business.url}#business`,
 		  name: business.name,
 		  legalName: business.legalName,
+		  alternateName: 'RamSer Fumigaciones',
 		  url: business.url,
 		  telephone: business.telephone,
 		  email: business.email,
 		  image: ogImage,
+		  logo: ogImage,
+		  description: description,
+		  priceRange: business.priceRange,
+		  openingHours: business.openingHours,
+		  areaServed: business.areasServed.map(area => ({
+		    '@type': 'Place',
+		    name: area
+		  })),
+		  hasOfferCatalog: {
+		    '@type': 'OfferCatalog',
+		    name: 'Servicios de Fumigación y Saneamiento',
+		    itemListElement: business.services.map(service => ({
+		      '@type': 'Offer',
+		      itemOffered: {
+		        '@type': 'Service',
+		        name: service
+		      }
+		    }))
+		  },
+		  address: {
+		    '@type': 'PostalAddress',
+		    streetAddress: business.address.streetAddress,
+		    addressLocality: business.address.addressLocality,
+		    addressRegion: business.address.addressRegion,
+		    addressCountry: business.address.addressCountry,
+		    postalCode: business.address.postalCode
+		  },
+		  geo: {
+		    '@type': 'GeoCoordinates',
+		    latitude: business.geo.latitude,
+		    longitude: business.geo.longitude
+		  },
+		  sameAs: business.sameAs,
+		  contactPoint: {
+		    '@type': 'ContactPoint',
+		    telephone: business.telephone,
+		    contactType: 'customer service',
+		    availableLanguage: 'Spanish',
+		    areaServed: 'AR'
+		  }
+		})}</script>
+
+		<!-- Service Schema -->
+		<script type="application/ld+json">{JSON.stringify({
+		  '@context': 'https://schema.org',
+		  '@type': 'Service',
+		  name: 'Fumigación y Control de Plagas',
+		  provider: {
+		    '@type': 'LocalBusiness',
+		    name: business.name,
+		    url: business.url
+		  },
+		  areaServed: business.areasServed.map(area => ({
+		    '@type': 'Place',
+		    name: area
+		  })),
+		  serviceType: 'Control de Plagas y Saneamiento Ambiental',
+		  description: 'Servicios profesionales de fumigación, control de plagas, desinsectación, desratización y saneamiento ambiental en la región NEA.',
+		  offers: {
+		    '@type': 'Offer',
+		    price: 'Consultar',
+		    priceCurrency: 'ARS',
+		    availability: 'https://schema.org/InStock'
+		  }
+		})}</script>
+
+		<!-- Organization Schema -->
+		<script type="application/ld+json">{JSON.stringify({
+		  '@context': 'https://schema.org',
+		  '@type': 'Organization',
+		  name: business.name,
+		  url: business.url,
+		  logo: ogImage,
+		  contactPoint: {
+		    '@type': 'ContactPoint',
+		    telephone: business.telephone,
+		    contactType: 'customer service',
+		    areaServed: 'AR',
+		    availableLanguage: 'Spanish'
+		  },
 		  address: {
 		    '@type': 'PostalAddress',
 		    streetAddress: business.address.streetAddress,
 		    addressLocality: business.address.addressLocality,
 		    addressRegion: business.address.addressRegion,
 		    addressCountry: business.address.addressCountry
-		  },
-		  sameAs: business.sameAs
+		  }
 		})}</script>
+		
+		<title>{title}</title>
 	</head>
 	<body>
 		<Header/>
