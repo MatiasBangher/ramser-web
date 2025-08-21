@@ -1,50 +1,257 @@
+---
+---
 
-<div class="animate-fade-in-right py-12">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center mb-6">¡Haz tu consulta!</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-center">
-        <!-- WhatsApp -->
-            <div class="flex flex-col items-center">
-            <a href="https://wa.link/e37vuw" rel="noopener" class="text-green-600 hover:text-green-800">
-                <img class="h-10 w-10 inline " src="/wap.png" alt="">
-            </a>
-            <p class="text-center mt-1"> <a href="https://wa.link/e37vuw" rel="noopener">3644-598253</a></p>
-            </div>
-            <!-- Facebook -->
-            <div class="flex flex-col items-center">
-            <a href="#" class="text-blue-600 hover:text-blue-800">
-                <img class="h-10 w-10 inline " src="/Face.svg" alt="">
-            </a>
-            <p class="text-center" ><a href="https://www.facebook.com/profile.php?id=100064195952988" rel="noopener">RamSer S.A.S Saneamiento Ambiental</a></p>
-            </div>
-            <!-- Correo electrónico -->
-            <div class="flex flex-col items-center">
-            <a href="mailto:ramonbangher@yahoo.com.ar" class="text-gray-600 hover:text-gray-800" rel="noopener">
-                <img class="h-8 w-8 inline " src="/email.png" alt="">
-            </a>
-            <p class="text-center mt-2"><a href="mailto:ramonbangher@yahoo.com.ar" rel="noopener">ramonbangher@yahoo.com.ar</a></p>
+<footer class="relative bg-gradient-to-b from-gray-900 to-black text-white overflow-hidden" id="Contacto">
+    <!-- Background decoration -->
+    <div class="absolute inset-0">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-green-500/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-green-400/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="relative z-10 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4" id="contact-title">
+                    ¡Haz tu <span class="text-green-400">Consulta!</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Estamos aquí para ayudarte con todas tus necesidades de control de plagas y saneamiento ambiental.
+                </p>
             </div>
 
+            <!-- Contact Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16" id="contact-grid">
+                <!-- WhatsApp -->
+                <div class="text-center group" id="contact-whatsapp">
+                    <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500/30 transition-colors duration-300">
+                        <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">WhatsApp</h3>
+                    <a href="https://wa.me/543644598253?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios" 
+                       class="text-green-400 hover:text-green-300 transition-colors duration-300 font-medium"
+                       rel="noopener"
+                       aria-label="Contactar por WhatsApp">
+                        3644-598253
+                    </a>
+                    <p class="text-gray-400 text-sm mt-1">Respuesta inmediata</p>
+                </div>
+
+                <!-- Facebook -->
+                <div class="text-center group" id="contact-facebook">
+                    <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500/30 transition-colors duration-300">
+                        <svg class="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Facebook</h3>
+                    <a href="https://www.facebook.com/profile.php?id=100064195952988" 
+                       class="text-blue-400 hover:text-blue-300 transition-colors duration-300 font-medium"
+                       rel="noopener"
+                       aria-label="Seguir en Facebook">
+                        RamSer S.A.S
+                    </a>
+                    <p class="text-gray-400 text-sm mt-1">Síguenos</p>
+                </div>
+
+                <!-- Email -->
+                <div class="text-center group" id="contact-email">
+                    <div class="w-16 h-16 bg-gray-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-gray-500/30 transition-colors duration-300">
+                        <svg class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Email</h3>
+                    <a href="mailto:ramonbangher@yahoo.com.ar" 
+                       class="text-gray-400 hover:text-gray-300 transition-colors duration-300 font-medium"
+                       aria-label="Enviar email">
+                        ramonbangher@yahoo.com.ar
+                    </a>
+                    <p class="text-gray-400 text-sm mt-1">Consulta profesional</p>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
 
-  <footer class="bg-black/40 py-6">
-    <div class="max-w-7xl mx-auto">
-        <div class="flex justify-between items-center">
-            <div class="text-white text-xs md:text-base">
-                <div class="flex items-center mt-1 ">
-                    <img src="/maps.svg" class="h-8 w-8" alt="">
-                    <p>Av. Antartida Argentina, Pampa del Infierno, Chaco, Argentina</p>
+    <!-- Main Footer Content -->
+    <div class="relative z-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Company Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <img src="/logo.png" class="h-12 w-12 mr-4" alt="RAMSER S.A.S Logo" />
+                        <div>
+                            <h3 class="text-xl font-bold text-white">RAMSER S.A.S</h3>
+                            <p class="text-green-400 text-sm">Saneamiento Ambiental</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Sociedad especializada en sanidad ambiental y control de plagas en la región NEA. 
+                        Ofrecemos servicios profesionales con la más alta calidad y tecnología certificada.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center text-sm text-gray-400">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Hab. N°2952
+                        </div>
+                        <div class="flex items-center text-sm text-gray-400">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                            Chaco, Argentina
+                        </div>
+                    </div>
                 </div>
-                <p class="pl-2 mt-3 md:mt-2">© 2024 RamSer S.A.S. Todos los derechos reservados.</p>
-            </div>
-            <div class="flex space-x-4 ml-2">
-                <div class="flex items-center mt-1 ">
-                    <img src="/pc.png" class="h-8 w-8 mr-2" alt="">
-                    <p class="text-xs md:text-base">Diseño y Desarrollo por <strong>Matias Bangher</strong></p>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Servicios</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>
+                            <a href="#Servicios" class="hover:text-green-400 transition-colors duration-300">Control de Plagas</a>
+                        </li>
+                        <li>
+                            <a href="#Servicios" class="hover:text-green-400 transition-colors duration-300">Control de Roedores</a>
+                        </li>
+                        <li>
+                            <a href="#Servicios" class="hover:text-green-400 transition-colors duration-300">Saneamiento Ambiental</a>
+                        </li>
+                        <li>
+                            <a href="#Servicios" class="hover:text-green-400 transition-colors duration-300">Desinfección</a>
+                        </li>
+                        <li>
+                            <a href="#Servicios" class="hover:text-green-400 transition-colors duration-300">Desinsectación</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Contacto</h4>
+                    <div class="space-y-3 text-gray-300">
+                        <div class="flex items-start">
+                            <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <p class="font-medium">Av. Antártida Argentina</p>
+                                <p>Pampa del Infierno, Chaco</p>
+                                <p>Argentina</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                            </svg>
+                            <a href="tel:+543644598253" class="hover:text-green-400 transition-colors duration-300">
+                                3644-598253
+                            </a>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                            </svg>
+                            <a href="mailto:ramonbangher@yahoo.com.ar" class="hover:text-green-400 transition-colors duration-300">
+                                ramonbangher@yahoo.com.ar
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-  </footer>
+
+    <!-- Bottom Footer -->
+    <div class="relative z-10 border-t border-gray-800 bg-black/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-400 text-sm mb-4 md:mb-0">
+                    © 2025 RamSer S.A.S. Todos los derechos reservados.
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="flex items-center text-gray-400 text-sm">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        Diseño y Desarrollo por <strong class="text-green-400 ml-1">Matias Bangher</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Footer animations
+    const footerTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#Contacto",
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    footerTl.from("#contact-title", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    })
+    .from("#contact-grid", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    }, "-=0.4")
+    .from("#contact-whatsapp", {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out"
+    }, "-=0.6")
+    .from("#contact-facebook", {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out"
+    }, "-=0.4")
+    .from("#contact-email", {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out"
+    }, "-=0.4");
+
+    // Hover animations for contact items
+    document.querySelectorAll('#contact-whatsapp, #contact-facebook, #contact-email').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            gsap.to(item, {
+                scale: 1.05,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+
+        item.addEventListener('mouseleave', () => {
+            gsap.to(item, {
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+    });
+</script>

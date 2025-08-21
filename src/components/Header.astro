@@ -1,36 +1,205 @@
 ---
 ---
-<header>
-    <div class="flex flex-wrap justify-between items-center mx-auto bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
-        <a href="" class="flex items-center">
-            <img src="/logo.png" class="mr-3 h-6 sm:h-9" alt="RamSer S.A.S" />
-            <span class="self-center text-xl font-family whitespace-nowrap dark:text-green-400">RAMSER S.A.S</span>
-        </a>
-        <nav class="col-span-1 justify-between">
-            <div class="block md:hidden">
-                <botton id="botton" class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"> 
-                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-                </botton>
+
+<header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gray-950/95 backdrop-blur-md border-b border-green-800/30 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-14 lg:h-16">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-3 group" aria-label="RAMSER S.A.S - Inicio">
+                <div class="relative">
+                    <img src="/logo.png" class="h-10 w-10 lg:h-14 lg:w-14 transition-transform duration-300 group-hover:scale-110 object-contain" alt="RAMSER S.A.S Logo" />
+                    <div class="absolute inset-0 bg-green-500 rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-lg lg:text-xl font-bold text-white group-hover:text-green-400 transition-colors duration-300">RAMSER S.A.S</span>
+                    <span class="text-xs lg:text-sm text-green-400 font-medium">Saneamiento Ambiental</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8" role="navigation" aria-label="Navegación principal">
+                <a href="/" class="nav-link text-gray-300 hover:text-green-400 font-medium transition-colors duration-300 relative group">
+                    Inicio
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#Servicios" class="nav-link text-gray-300 hover:text-green-400 font-medium transition-colors duration-300 relative group">
+                    Servicios
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#Nuestros-Trabajos" class="nav-link text-gray-300 hover:text-green-400 font-medium transition-colors duration-300 relative group">
+                    Galería
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#Contacto" class="nav-link text-gray-300 hover:text-green-400 font-medium transition-colors duration-300 relative group">
+                    Contacto
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:block">
+                <a href="https://wa.me/543644598253?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios" 
+                   class="inline-flex items-center px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                   rel="noopener"
+                   aria-label="Contactar por WhatsApp">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                    </svg>
+                    Contactar
+                </a>
             </div>
-            <div id="menu" class="md:static absolute bg-gray-800 left-0 md:py-0 py-4 -z-[-1] w-full flex-grow md:flex md:items-center md:w-auto hidden">
-                <div class="flex flex-col  mt-4 px-5 font-family font-bold text-lg md:flex-row md:space-x-8 lg:mt-0 ">
-                        
-                    <a href="" class="block pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Inicio</a>
-                
-                    <a href="#Servicios" class="block pr-4 pl-3 text-gray-700  border-gray-100 hover:bg-green-400 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-green-600 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Servicios</a>
-                
-                    <a href="#Nuestros-Trabajos" class="block pr-4 pl-3 text-gray-700  border-gray-100 hover:bg-green-400 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-green-600 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Galeria</a>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" 
+                    class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-green-400 hover:bg-green-900/20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 transition-colors duration-300"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                    aria-label="Abrir menú de navegación">
+                <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-950 border-t border-green-800/30">
+                <a href="/" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-green-400 hover:bg-green-900/20 transition-colors duration-300">
+                    Inicio
+                </a>
+                <a href="#Servicios" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-green-400 hover:bg-green-900/20 transition-colors duration-300">
+                    Servicios
+                </a>
+                <a href="#Nuestros-Trabajos" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-green-400 hover:bg-green-900/20 transition-colors duration-300">
+                    Galería
+                </a>
+                <a href="#Contacto" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-green-400 hover:bg-green-900/20 transition-colors duration-300">
+                    Contacto
+                </a>
+                <div class="pt-4 pb-3 border-t border-green-800/30">
+                    <a href="https://wa.me/543644598253?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios" 
+                       class="flex items-center justify-center w-full px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors duration-300"
+                       rel="noopener">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                        </svg>
+                        Contactar por WhatsApp
+                    </a>
+                </div>
                 </div>
             </div>
-        </nav>
     </div>
 </header>
 
 <script>
-    const boton = document.querySelector('#botton');
-    const menu = document.querySelector('#menu');
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    
+    gsap.registerPlugin(ScrollTrigger);
 
-    boton?.addEventListener('click', ()=>{
-        menu?.classList.toggle('hidden')
-    })
+    // Header scroll effect
+    const header = document.getElementById('header');
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > 100) {
+            header?.classList.add('bg-gray-950/98', 'shadow-xl');
+            header?.classList.remove('bg-gray-950/95', 'shadow-lg');
+        } else {
+            header?.classList.remove('bg-gray-950/98', 'shadow-xl');
+            header?.classList.add('bg-gray-950/95', 'shadow-lg');
+        }
+
+        // Hide/show header on scroll
+        if (currentScrollY > lastScrollY && currentScrollY > 200) {
+            gsap.to(header, { y: -100, duration: 0.3 });
+        } else {
+            gsap.to(header, { y: 0, duration: 0.3 });
+        }
+        
+        lastScrollY = currentScrollY;
+    });
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcons = mobileMenuButton?.querySelectorAll('svg');
+
+    mobileMenuButton?.addEventListener('click', () => {
+        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        
+        if (isExpanded) {
+            // Close menu
+            mobileMenu?.classList.add('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            menuIcons?.[0]?.classList.remove('hidden');
+            menuIcons?.[1]?.classList.add('hidden');
+            
+            gsap.to(mobileMenu, { 
+                height: 0, 
+                opacity: 0, 
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        } else {
+            // Open menu
+            mobileMenu?.classList.remove('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', 'true');
+            menuIcons?.[0]?.classList.add('hidden');
+            menuIcons?.[1]?.classList.remove('hidden');
+            
+            gsap.fromTo(mobileMenu, 
+                { height: 0, opacity: 0 },
+                { 
+                    height: 'auto', 
+                    opacity: 1, 
+                    duration: 0.3,
+                    ease: "power2.out"
+                }
+            );
+        }
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            e.preventDefault();
+            const href = (anchor as HTMLAnchorElement).getAttribute('href');
+            const target = href ? document.querySelector(href) : null;
+            if (target) {
+                const headerHeight = header?.offsetHeight || 0;
+                const targetPosition = (target as HTMLElement).offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenuButton?.click();
+                }
+            }
+        });
+    });
+
+    // Animate nav links on scroll
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach((link, i) => {
+        gsap.fromTo(link, 
+            { y: -20, opacity: 0 },
+            { 
+                y: 0, 
+                opacity: 1, 
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: "power2.out"
+            }
+        );
+    });
 </script>

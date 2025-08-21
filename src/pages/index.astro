@@ -1,15 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
 import Bento from '../components/Bento.astro';
 import Gallery from '../components/Gallery.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 
-
+const title = "RAMSER S.A.S - Control de Plagas y Saneamiento Ambiental | Pampa del Infierno, Chaco";
+const description = "RAMSER S.A.S es una empresa especializada en control de plagas y saneamiento ambiental en la región NEA. Servicios profesionales de desinsectación, desratización y desinfección. Habilitación Provincial N°2952. Contacto: 3644-598253";
 ---
 
-<Layout title="RamSer S.A.S es una sociedad que se encarga de la sanidad ambiental y el control de plagas en la región del NEA, con domicilio en Pampa del Infierno, Chaco"
-description="Descubre nuestros servicios y contáctanos">
+<Layout title={title} description={description}>
+	<Header/>
 	<main>
 		<Hero/>
 		<Bento/>

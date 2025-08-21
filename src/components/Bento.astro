@@ -1,19 +1,34 @@
 ---
 import BentoItem from './BentoItem.astro'
 ---
-    
-<div  class="animate-fade-in-down pt-20 text-3xl  text-center md:text-6xl font-family">SERVICIOS</div>
+
+<!-- Section Header -->
+<div class="relative text-center pt-20 pb-16" id="services-header">
+    <div class="inline-flex items-center px-4 py-2 bg-green-600/20 border border-green-500/30 rounded-full text-green-300 text-sm font-medium mb-6" id="services-badge">
+        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+        </svg>
+        Servicios Profesionales
+    </div>
+    <h1 class="text-4xl md:text-6xl font-bold text-white mb-6" id="services-title">
+        Nuestros <span class="text-green-400">Servicios</span>
+    </h1>
+    <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed" id="services-subtitle">
+        Ofrecemos soluciones integrales de control de plagas y saneamiento ambiental 
+        con la más alta tecnología y profesionales certificados.
+    </p>
+</div>
 
 <section
     class={`
-    w-full max-w-[1600px]
-    grid grid-cols-10 auto-rows-[20rem] gap-4 
-    mx-auto pl-16 pr-16 pt-10
+    w-full max-w-[1400px]
+    grid grid-cols-10 auto-rows-[12rem] md:auto-rows-[16rem] gap-3 md:gap-4 
+    mx-auto pl-4 pr-4 pt-8 md:pl-8 md:pr-8 md:pt-10
     animate-fade-in
     `}
     id="Servicios"
     >
-    <BentoItem class="col-span-10 md:col-span-4" title="Control de plagas">
+    <BentoItem class="col-span-10 md:col-span-4" title="Control de Plagas" id="service-1">
         <div 
             slot="image" 
             class="absolute left-0 top-0 bottom-0 w-full h-full
@@ -23,11 +38,12 @@ import BentoItem from './BentoItem.astro'
         >
         </div>
         <p slot="content" class="max-w-xl text-base lg:text-xl">
-            Ofrecemos a nuestro clientes la aplicación de tratamiento y tecnología mas recientes,
-            mediente el concepto de <strong>gestión integrada de plagas</strong> (M.I.P).
+            Aplicamos tratamientos con la tecnología más reciente mediante el concepto de 
+            <strong class="text-green-400">Gestión Integrada de Plagas (M.I.P)</strong>, 
+            eliminando problemas con mínimo impacto ambiental.
         </p>
     </BentoItem>
-    <BentoItem class="col-span-10 md:col-span-6" title="Control de Roedores">
+    <BentoItem class="col-span-10 md:col-span-6" title="Control de Roedores" id="service-2">
             <div 
             slot="image" 
             class="absolute left-0 top-0 bottom-0 w-full h-full
@@ -37,11 +53,12 @@ import BentoItem from './BentoItem.astro'
         >
         </div>
         <p slot="content" class="max-w-xl text-base lg:text-xl">
-            Nuestros servicios garantizan la protección con soluciones eficaces y seguras. Lo realizamos en 
-            <strong>comercios, fabricas, plantas de acopios, almacenes o cualquier tipo de instalaciones.</strong>  
+            Nuestros servicios garantizan protección con soluciones eficaces y seguras. 
+            Realizamos tratamientos en <strong class="text-green-400">comercios, fábricas, 
+            plantas de acopio, almacenes</strong> y cualquier tipo de instalación.
         </p>
     </BentoItem>
-    <BentoItem class="col-span-10 md:col-span-6" title="Saneamiento ambiental">
+    <BentoItem class="col-span-10 md:col-span-6" title="Saneamiento Ambiental" id="service-3">
         <div 
             slot="image" 
             class="absolute left-0 top-0 bottom-0 w-full h-full
@@ -50,10 +67,13 @@ import BentoItem from './BentoItem.astro'
             style="background-image: url('/saneando.webp')"
         >
         </div>
-        <p slot="content" class="max-w-xl text-base lg:text-xl ">
-            Nuestros servicios abarcan el control de la contaminación y la prevención de enfermedades transmitidas por el medio ambiente.</p>
+        <p slot="content" class="max-w-xl text-base lg:text-xl">
+            Nuestros servicios abarcan el control de la contaminación y la prevención 
+            de enfermedades transmitidas por el medio ambiente con <strong class="text-green-400">
+            métodos seguros y certificados</strong>.
+        </p>
     </BentoItem>
-    <BentoItem class="col-span-10 md:col-span-4" title="Equipos">
+    <BentoItem class="col-span-10 md:col-span-4" title="Equipos y Tecnología" id="service-4">
         <div 
             slot="image" 
             class="absolute left-0 top-0 bottom-0 w-full h-full
@@ -62,25 +82,188 @@ import BentoItem from './BentoItem.astro'
             style="background-image: url('/fumigando.webp')"
         >
         </div>
-        <p slot="content" class="max-w-xl text-base lg:text-xl">Contamos con un equipo de profesionales altamente capacitados que utilizan 
-            la última tecnología y los mejores productos para brindarte soluciones efectivas. 
-            <strong>Tu tranquilidad y la protección son nuestra prioridad.</strong></p>
+        <p slot="content" class="max-w-xl text-base lg:text-xl">
+            Contamos con un equipo de profesionales altamente capacitados que utilizan 
+            la última tecnología y los mejores productos. <strong class="text-green-400">
+            Tu tranquilidad y protección son nuestra prioridad</strong>.
+        </p>
     </BentoItem>
 
 </section>
-<div class="animate-pop animate-on-scroll flex justify-center  pt-8">
-    <div class="max-w-lg rounded bg-black/30 overflow-hidden shadow-lg">
+
+<div class="animate-pop animate-on-scroll flex justify-center pt-8" id="certification-badge">
+    <div class="max-w-lg rounded bg-gradient-to-r from-green-600/20 to-green-500/20 border border-green-500/30 backdrop-blur-sm overflow-hidden shadow-lg">
         <div class="px-6 py-4">
-        <div class="font-bold text-base text-center lg:text-2xl mb-2">HABILITACIÓN PROVINCIAL N°2952</div>
-            <p class="text-white text-sm text-center lg:text-base">
-                Ministerio de Salud - Provincia del Chaco     </p>
-        
+            <div class="font-bold text-base text-center lg:text-2xl mb-2 text-white">HABILITACIÓN PROVINCIAL N°2952</div>
+            <p class="text-green-300 text-sm text-center lg:text-base">
+                Ministerio de Salud - Provincia del Chaco
+            </p>
         </div>    
     </div>
 </div>
 
-<div class="text-center text-base md:text-2xl pt-20 m-0 font-family">
-    RAPIDEZ - EFICACIA - DISCIPLINA - CONFIANZA 
-                      
-    
+<div class="text-center text-base md:text-2xl pt-20 m-0 font-family" id="values-section">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+        <div class="text-center group" id="value-1">
+            <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500/30 transition-colors duration-300">
+                <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/>
+                </svg>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-2">Rapidez</h4>
+            <p class="text-gray-300 text-sm">Respuesta inmediata a sus necesidades</p>
+        </div>
+        <div class="text-center group" id="value-2">
+            <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500/30 transition-colors duration-300">
+                <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                </svg>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-2">Eficacia</h4>
+            <p class="text-gray-300 text-sm">Resultados garantizados en cada servicio</p>
+        </div>
+        <div class="text-center group" id="value-3">
+            <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500/30 transition-colors duration-300">
+                <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-2">Disciplina</h4>
+            <p class="text-gray-300 text-sm">Metodología rigurosa y profesional</p>
+        </div>
+        <div class="text-center group" id="value-4">
+            <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500/30 transition-colors duration-300">
+                <svg class="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                </svg>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-2">Confianza</h4>
+            <p class="text-gray-300 text-sm">Relaciones duraderas con nuestros clientes</p>
+        </div>
+    </div>
 </div>
+
+<script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Services section animations
+    const servicesTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#services-header",
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    servicesTl.from("#services-badge", {
+        y: -30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    })
+    .from("#services-title", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    }, "-=0.4")
+    .from("#services-subtitle", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    }, "-=0.6");
+
+    // Services grid animations
+    const servicesGridTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#Servicios",
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    servicesGridTl.from("#service-1", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    })
+    .from("#service-2", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    }, "-=0.6")
+    .from("#service-3", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    }, "-=0.6")
+    .from("#service-4", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+    }, "-=0.6");
+
+    // Certification badge animation
+    gsap.fromTo("#certification-badge",
+        { scale: 0.8, opacity: 0 },
+        {
+            scale: 1,
+            opacity: 1,
+            duration: 1,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+                trigger: "#certification-badge",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            }
+        }
+    );
+
+    // Values animation
+    gsap.fromTo(["#value-1", "#value-2", "#value-3", "#value-4"],
+        { y: 30, opacity: 0 },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: "#values-section",
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            }
+        }
+    );
+
+    // Hover animations for service cards
+    document.querySelectorAll('#service-1, #service-2, #service-3, #service-4').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+                scale: 1.02,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+    });
+</script>
