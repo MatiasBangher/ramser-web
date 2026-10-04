@@ -3,18 +3,23 @@ import SectionHead from './SectionHead.astro';
 import { process } from '../data/site';
 ---
 
-<section id="proceso" aria-labelledby="proceso-titulo" class="bg-paper-2 py-16 md:py-24">
+<!--
+	Monte band: the only coloured field on the page. Text is paper (10.6:1 on monte),
+	secondary text paper/75 (6.7:1), leaf is reserved for the step numbers and the drawn line (5.0:1).
+-->
+<section id="proceso" aria-labelledby="proceso-titulo" class="on-ink bg-monte pb-20 pt-24 text-paper md:pb-28 md:pt-36">
 	<div class="mx-auto w-full max-w-page px-5 md:px-10">
-		<SectionHead index="03" label="Proceso" title="Cómo trabajamos" id="proceso-titulo" />
+		<SectionHead index="03" label="Proceso" title="Cómo trabajamos" id="proceso-titulo" dark />
 
-		<div class="relative mt-12 md:mt-20">
-			<div class="absolute inset-x-0 top-[5px] hidden h-px bg-rule md:block" aria-hidden="true"></div>
-			<div data-process-line class="absolute inset-x-0 top-[5px] hidden h-px bg-ink md:block" aria-hidden="true"></div>
+		<div class="relative mt-14 md:mt-24">
+			<div class="absolute inset-x-0 top-[5px] hidden h-px bg-paper/20 md:block" aria-hidden="true"></div>
+			<div data-process-line class="absolute inset-x-0 top-[5px] hidden h-px bg-leaf md:block" aria-hidden="true"></div>
 			<ol class="grid grid-cols-1 md:grid-cols-4 md:gap-x-6">
 				{
-					process.map((label) => (
-						<li class="border-t border-rule py-5 md:border-t-0 md:pt-0">
-							<span class="relative mb-5 hidden h-[11px] w-[11px] bg-ink md:block" aria-hidden="true" />
+					process.map((label, i) => (
+						<li class="grid grid-cols-[3rem_1fr] items-baseline border-t border-paper/20 py-5 last:border-b md:block md:border-0 md:pt-0">
+							<span class="relative mb-5 hidden h-[11px] w-[11px] bg-leaf md:block" aria-hidden="true" />
+							<span class="mono-label block text-leaf md:mb-3">{String(i + 1).padStart(2, '0')}</span>
 							<p class="display text-[2rem] leading-none md:text-[2.25rem]">{label}</p>
 						</li>
 					))

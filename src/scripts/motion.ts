@@ -126,9 +126,124 @@ function processLine() {
   );
 }
 
+type WorksStrip = {
+  section: HTMLElement;
+  pin: HTMLElement;
+  viewport: HTMLElement;
+  track: HTMLElement;
+  frames: HTMLElement[];
+  counter: HTMLElement | null;
+};
+
+function worksStrip(): WorksStrip | null {
+  const section = document.querySelector<HTMLElement>('[data-works]');
+  const pin = section?.querySelector<HTMLElement>('[data-works-pin]');
+  const viewport = section?.querySelector<HTMLElement>('[data-works-viewport]');
+  const track = section?.querySelector<HTMLElement>('[data-works-track]');
+  if (!section || !pin || !viewport || !track) return null;
+  return {
+    section,
+    pin,
+    viewport,
+    track,
+    frames: gsap.utils.toArray<HTMLElement>('[data-works-frame]', track),
+    counter: section.querySelector<HTMLElement>('[data-works-counter]'),
+  };
+}
+
+/** Index of the frame whose left edge has passed the middle of the visible strip. */
+function setWorksCounter(strip: WorksStrip, offset: number) {
+  if (!strip.counter) return;
+  // Map travel progress to a frame index so the last frame is reached at the end
+  // even when several frames fit in the viewport at once.
+  const max = Math.max(1, strip.track.scrollWidth - strip.viewport.clientWidth);
+  const progress = Math.min(1, Math.max(0, offset / max));
+  const current = Math.round(progress * (strip.frames.length - 1));
+  strip.counter.textContent = String(current + 1).padStart(2, '0');
+}
+
+/** Native strip counter (mobile, reduced motion). State, not motion: runs in every mode. */
+function worksCounter(strip: WorksStrip) {
+  strip.viewport.addEventListener('scroll', () => setWorksCounter(strip, strip.viewport.scrollLeft), { passive: true });
+}
+
+/**
+ * Desktop film strip: pin the sequence and translate it horizontally with the
+ * vertical scroll. Each photo drifts slightly inside its frame.
+ */
+function worksCinematic(strip: WorksStrip) {
+  const { pin, viewport, track, frames } = strip;
+  const overflow = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+
+  pin.classList.add('is-cinematic');
+  viewport.scrollLeft = 0;
+  // Arrow keys cannot scroll an overflow:hidden strip; frames stay reachable via Tab.
+  viewport.removeAttribute('tabindex');
+
+  const tween = gsap.to(track, {
+    x: () => -overflow(),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: pin,
+      pin: true,
+      start: 'top top',
+      end: () => `+=${overflow()}`,
+      scrub: 0.6,
+      invalidateOnRefresh: true,
+      onUpdate: () => setWorksCounter(strip, -Number(gsap.getProperty(track, 'x'))),
+    },
+  });
+
+  frames.forEach((frame) => {
+    const img = frame.querySelector<HTMLElement>('[data-works-img]');
+    if (!img) return;
+    // ±5% of a 112%-wide layer stays inside the 6% bleed on each side.
+    gsap.fromTo(
+      img,
+      { xPercent: 5 },
+      {
+        xPercent: -5,
+        ease: 'none',
+        scrollTrigger: { trigger: frame, containerAnimation: tween, start: 'left right', end: 'right left', scrub: true },
+      },
+    );
+  });
+
+  // Keyboard: focusing an off-screen frame scrolls the page to where that frame is in view.
+  const onFocus = (e: FocusEvent) => {
+    const frame = (e.target as HTMLElement).closest<HTMLElement>('[data-works-frame]');
+    const st = tween.scrollTrigger;
+    viewport.scrollLeft = 0;
+    if (!frame || !st) return;
+    const pad = frames[0]?.offsetLeft ?? 0;
+    const max = overflow() || 1;
+    const progress = gsap.utils.clamp(0, 1, (frame.offsetLeft - pad) / max);
+    window.scrollTo({ top: st.start + progress * (st.end - st.start), behavior: 'auto' });
+  };
+  viewport.addEventListener('focusin', onFocus);
+
+  // Lazy images do not change layout (frames are sized by CSS), but refresh once they decode anyway.
+  const refresh = () => ScrollTrigger.refresh();
+  const pending = Array.from(track.querySelectorAll('img')).filter((img) => !img.complete);
+  pending.forEach((img) => img.addEventListener('load', refresh, { once: true }));
+
+  return () => {
+    viewport.removeEventListener('focusin', onFocus);
+    pending.forEach((img) => img.removeEventListener('load', refresh));
+    pin.classList.remove('is-cinematic');
+    viewport.setAttribute('tabindex', '0');
+    gsap.set(track, { clearProps: 'transform' });
+  };
+}
+
 headerState();
+const strip = worksStrip();
+if (strip) worksCounter(strip);
 
 const mm = gsap.matchMedia();
+if (strip) {
+  mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => worksCinematic(strip));
+}
 mm.add('(prefers-reduced-motion: no-preference)', () => {
   hero();
   rules();
