@@ -10,6 +10,7 @@ export default {
 				ink: { DEFAULT: '#1B1D18', 2: '#3A3D35' },
 				soil: '#A9472A',
 				leaf: '#6DB64A',
+				monte: { DEFAULT: '#1F3A1E', 2: '#2A4A27' },
 				olive: '#5C6B3C',
 				rule: 'rgba(27, 29, 24, 0.18)',
 			},

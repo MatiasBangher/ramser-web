@@ -1,47 +1,66 @@
 ---
 import Photo from './Photo.astro';
 import SectionHead from './SectionHead.astro';
-import { gallery } from '../data/site';
+import { gallery, services } from '../data/site';
 
-// Contact-sheet layout: asymmetric spans + vertical offsets (desktop). fum2 lives in the field band.
-const items = gallery.slice(1);
-const layout = [
-	'md:col-span-5',
-	'md:col-span-4 md:col-start-7 md:mt-28',
-	'md:col-span-4',
-	'md:col-span-4 md:mt-16',
-	'md:col-span-4 md:mt-32',
-];
+// Each photo appears once on the page: fum2 lives in the field band, and any photo
+// already shown in the services list is skipped.
+const usedElsewhere = new Set<string>([gallery[0].image, ...services.map((s) => s.image)]);
+const items = gallery.filter((item) => !usedElsewhere.has(item.image));
+const total = String(items.length).padStart(2, '0');
 ---
 
-<section id="trabajos" aria-labelledby="trabajos-titulo" class="mx-auto w-full max-w-page px-5 pb-20 pt-20 md:px-10 md:pb-32 md:pt-28">
-	<SectionHead index="04" label="Trabajos" title="Nuestros Trabajos" id="trabajos-titulo" />
+<section id="trabajos" aria-labelledby="trabajos-titulo" data-works class="pb-20 pt-24 md:pb-28 md:pt-32">
+	<div class="mx-auto w-full max-w-page px-5 md:px-10">
+		<SectionHead index="04" label="Trabajos" title="Nuestros Trabajos" id="trabajos-titulo" />
+	</div>
 
-	<ul class="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 md:mt-20 md:grid-cols-12 md:gap-y-16">
-		{
-			items.map((item, i) => (
-				<li class={layout[i]}>
-					<figure data-clip={i % 2 === 0 ? 'left' : 'up'}>
-						<button
-							type="button"
-							data-lightbox-open
-							aria-label={`Ver foto: ${item.caption}`}
-							class="block w-full cursor-zoom-in"
-						>
-							<Photo
-								image={item.image}
-								alt={item.alt}
-								widths={[320, 480, 640, 734]}
-								sizes="(min-width: 768px) 40vw, calc(100vw - 2.5rem)"
-								class="aspect-[3/4]"
-							/>
-						</button>
-						<figcaption class="mono-label mt-2 text-ink-2">FIG. {String(i + 7).padStart(2, '0')} — {item.caption}</figcaption>
-					</figure>
-				</li>
-			))
-		}
-	</ul>
+	<!-- Pinned on desktop when motion is allowed; otherwise a native scroll-snap strip. -->
+	<div data-works-pin class="works-pin mt-12 md:mt-16">
+		<div class="mx-auto flex w-full max-w-page items-baseline justify-between border-b border-rule px-5 pb-3 md:px-10">
+			<p class="mono-label text-ink-2">Registro de campo</p>
+			<p class="mono-label tabular-nums text-ink" aria-hidden="true"><span data-works-counter>01</span> / {total}</p>
+		</div>
+
+		<div
+			data-works-viewport
+			role="region"
+			aria-label="Secuencia de fotos de trabajos, desplazable horizontalmente"
+			tabindex="0"
+			class="works-viewport snap-x snap-mandatory overflow-x-auto overscroll-x-contain"
+		>
+			<ul data-works-track class="works-track flex w-max gap-5 pt-6 md:gap-8">
+				{
+					items.map((item, i) => (
+						<li data-works-frame class="shrink-0 snap-start">
+							<figure>
+								<button
+									type="button"
+									data-lightbox-open
+									aria-label={`Ver foto: ${item.caption}`}
+									class="block cursor-zoom-in"
+								>
+									<span class="works-frame relative block overflow-hidden bg-paper-2">
+										<span data-works-img class="absolute inset-y-0 -left-[6%] block w-[112%]">
+											<Photo
+												image={item.image}
+												alt={item.alt}
+												widths={[480, 640, 734]}
+												sizes="(min-width: 1024px) 52vh, (min-width: 768px) 46vw, 85vw"
+												loading={i === 0 ? 'eager' : 'lazy'}
+												class="h-full"
+											/>
+										</span>
+									</span>
+								</button>
+								<figcaption class="mono-label mt-3 text-ink-2">FIG. {String(i + 7).padStart(2, '0')} — {item.caption}</figcaption>
+							</figure>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
 
 	<dialog id="lightbox" data-lightbox aria-label="Foto ampliada" class="m-auto max-h-[92svh] w-[min(92vw,720px)] border border-ink bg-paper p-0 text-ink backdrop:bg-ink/80">
 		<form method="dialog" class="flex items-center justify-between border-b border-rule px-4 py-2">
@@ -51,6 +70,62 @@ const layout = [
 		<img data-lightbox-img alt="" class="block max-h-[78svh] w-full object-contain" />
 	</dialog>
 </section>
+
+<style>
+	.works-viewport {
+		scrollbar-width: none;
+		scroll-padding-inline: 1.25rem;
+	}
+	.works-viewport::-webkit-scrollbar {
+		display: none;
+	}
+	.works-track {
+		padding-inline: 1.25rem;
+	}
+	/* Portrait sources (734px wide): frames are sized by height on desktop to stay sharp. */
+	.works-frame {
+		width: 85vw;
+		aspect-ratio: 3 / 4;
+	}
+	@media (min-width: 768px) {
+		.works-viewport {
+			scroll-padding-inline: 2.5rem;
+		}
+		.works-track {
+			padding-inline: 2.5rem;
+		}
+		.works-frame {
+			width: 46vw;
+		}
+	}
+	@media (min-width: 1024px) {
+		.works-frame {
+			width: auto;
+			height: min(70svh, calc(100svh - 14rem));
+		}
+		/* Leaves room for the last frame to travel to the centre of the viewport. */
+		.works-track {
+			padding-right: max(2.5rem, calc(50vw - 26svh));
+		}
+	}
+	@media (min-width: 1320px) {
+		.works-track {
+			padding-left: calc((100vw - 1320px) / 2 + 2.5rem);
+		}
+	}
+	/* Cinematic mode (set by motion.ts): the strip is translated, not scrolled. */
+	:global(.works-pin.is-cinematic) {
+		display: flex;
+		height: 100svh;
+		flex-direction: column;
+		justify-content: center;
+		padding-top: 5rem;
+	}
+	:global(.works-pin.is-cinematic) .works-viewport {
+		overflow: hidden;
+		scroll-snap-type: none;
+	}
+</style>
 
 <script>
 	const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
