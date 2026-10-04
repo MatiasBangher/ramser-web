@@ -1,0 +1,25 @@
+---
+import SectionHead from './SectionHead.astro';
+import { process } from '../data/site';
+---
+
+<section id="proceso" aria-labelledby="proceso-titulo" class="bg-paper-2 py-16 md:py-24">
+	<div class="mx-auto w-full max-w-page px-5 md:px-10">
+		<SectionHead index="03" label="Proceso" title="Cómo trabajamos" id="proceso-titulo" />
+
+		<div class="relative mt-12 md:mt-20">
+			<div class="absolute inset-x-0 top-[5px] hidden h-px bg-rule md:block" aria-hidden="true"></div>
+			<div data-process-line class="absolute inset-x-0 top-[5px] hidden h-px bg-ink md:block" aria-hidden="true"></div>
+			<ol class="grid grid-cols-1 md:grid-cols-4 md:gap-x-6">
+				{
+					process.map((label) => (
+						<li class="border-t border-rule py-5 md:border-t-0 md:pt-0">
+							<span class="relative mb-5 hidden h-[11px] w-[11px] bg-ink md:block" aria-hidden="true" />
+							<p class="display text-[2rem] leading-none md:text-[2.25rem]">{label}</p>
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</div>
+</section>

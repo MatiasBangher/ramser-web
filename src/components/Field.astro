@@ -1,0 +1,31 @@
+---
+import Photo from './Photo.astro';
+import { mission, gallery } from '../data/site';
+
+const photo = gallery[0];
+---
+
+<section aria-label="Parte de campo" class="bg-paper-2 pb-20 md:pb-28">
+	<figure data-clip="left">
+		<Photo
+			image={photo.image}
+			alt={photo.alt}
+			widths={[640, 960, 1280, 1600]}
+			sizes="100vw"
+			position="40% 50%"
+			class="aspect-[16/9] md:aspect-[21/9]"
+		/>
+		<figcaption class="mx-auto w-full max-w-page px-5 pt-3 md:px-10">
+			<span class="mono-label text-ink-2">FIG. 06 — {photo.caption} — Chaco</span>
+		</figcaption>
+	</figure>
+
+	<div class="mx-auto mt-12 w-full max-w-page px-5 md:mt-20 md:px-10">
+		<blockquote class="grid grid-cols-12 gap-x-6">
+			<p data-split class="display col-span-12 text-[clamp(1.75rem,3.6vw,3.25rem)] leading-[1.08] md:col-span-9 md:col-start-3">
+				“Contribuir a la salud de nuestros clientes y el medio ambiente, solucionando rápida y efectivamente los problemas de plagas urbanas, rurales e industriales.”
+			</p>
+			<p class="mono-label col-span-12 mt-6 text-ink-2 md:col-span-9 md:col-start-3">— {mission.title}</p>
+		</blockquote>
+	</div>
+</section>

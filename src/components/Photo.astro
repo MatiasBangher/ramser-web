@@ -1,0 +1,29 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+	image: string;
+	alt: string;
+	widths: number[];
+	sizes: string;
+	position?: string;
+	loading?: 'eager' | 'lazy';
+	class?: string;
+}
+
+const { image, alt, widths, sizes, position = '50% 50%', loading = 'lazy', class: className = '' } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/images/*.webp', { eager: true });
+const src = images[`../assets/images/${image}.webp`].default;
+---
+
+<Image
+	src={src}
+	alt={alt}
+	widths={widths}
+	sizes={sizes}
+	loading={loading}
+	fetchpriority={loading === 'eager' ? 'high' : undefined}
+	style={`object-position: ${position}`}
+	class:list={['block w-full object-cover', className]}
+/>
