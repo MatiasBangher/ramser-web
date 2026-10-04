@@ -1,0 +1,61 @@
+---
+import SectionHead from './SectionHead.astro';
+import { business, hours, waLink } from '../data/site';
+
+const rows = [
+	{ label: 'Teléfono', href: business.phoneHref, text: business.phoneDisplay },
+	{ label: 'Email', href: `mailto:${business.email}`, text: business.email },
+	{
+		label: 'Dirección',
+		text: `${business.address.streetAddress}, ${business.address.addressLocality}, ${business.address.addressRegion}, Argentina`,
+	},
+	{ label: 'Horarios', lines: [hours.weekdays, hours.saturday] },
+	{ label: 'Facebook', href: business.facebook, text: 'RamSer S.A.S', external: true },
+] as const;
+---
+
+<section id="contacto" aria-labelledby="contacto-titulo" class="on-ink bg-ink pb-8 pt-16 text-paper md:pt-24">
+	<div class="mx-auto w-full max-w-page px-5 md:px-10">
+		<SectionHead index="05" label="Contacto" title="¡Haz tu Consulta!" id="contacto-titulo" dark />
+
+		<div class="mt-12 grid grid-cols-12 gap-x-6 md:mt-20">
+			<div class="col-span-12 md:col-span-10 md:col-start-3">
+				<a
+					href={waLink('contact')}
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label={`Escribinos por WhatsApp al ${business.phoneDisplay}`}
+					class="display block text-[clamp(3.25rem,13vw,10rem)] leading-[0.95] underline decoration-soil decoration-[3px] underline-offset-[0.12em] hover:decoration-paper"
+				>
+					{business.phoneDisplay}
+				</a>
+				<p class="mt-5 text-[1.25rem] text-paper/85">Escribinos y te respondemos.</p>
+			</div>
+		</div>
+
+		<dl class="mt-14 border-t border-paper/30 md:mt-20">
+			{
+				rows.map((r) => (
+					<div class="grid grid-cols-12 gap-x-6 gap-y-1 border-b border-paper/20 py-4">
+						<dt class="mono-label col-span-12 text-paper/75 md:col-span-2 md:pt-1">{r.label}</dt>
+						<dd class="col-span-12 md:col-span-9">
+							{'lines' in r ? (
+								r.lines.map((l) => <span class="block">{l}</span>)
+							) : 'href' in r ? (
+								<a
+									href={r.href}
+									{...('external' in r ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+									class="break-all underline decoration-paper/50 underline-offset-4 hover:decoration-paper"
+								>
+									{r.text}
+								</a>
+							) : (
+								r.text
+							)}
+						</dd>
+					</div>
+				))
+			}
+		</dl>
+	</div>
+</section>

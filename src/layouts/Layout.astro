@@ -1,79 +1,101 @@
 ---
+import '@fontsource/instrument-serif/latin-400.css';
+import '@fontsource/instrument-serif/latin-400-italic.css';
+import '@fontsource-variable/public-sans/wght.css';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '@fontsource/ibm-plex-mono/latin-500.css';
+import { getImage } from 'astro:assets';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyBar from '../components/StickyBar.astro';
+import heroImage from '../assets/images/hero1.webp';
+import { SITE_URL, business, hours, seo, offeredServices } from '../data/site';
+
 interface Props {
-	description: string;
-	title: string;
-	keywords: string;
+	title?: string;
+	description?: string;
 }
 
-const { description ,title, keywords } = Astro.props;
-const siteUrl = Astro.url?.origin ?? 'https://ramser.com.ar';
-const canonical = new URL(Astro.url?.pathname ?? '/', siteUrl).toString();
-const ogImage = '/logo.png';
-const business = {
-  name: 'RAMSER S.A.S',
-  legalName: 'RamSer S.A.S Saneamiento Ambiental',
-  url: siteUrl,
-  telephone: '+54-3644-598253',
-  whatsapp: '+54-3644-598253',
-  email: 'ramonbangher@yahoo.com.ar',
-  address: {
-    streetAddress: 'Av. Antártida Argentina',
-    addressLocality: 'Pampa del Infierno',
-    addressRegion: 'Chaco',
-    addressCountry: 'AR',
-    postalCode: '3708'
-  },
-  geo: {
-    latitude: '-26.5051',
-    longitude: '-61.1744'
-  },
-  openingHours: 'Mo-Fr 08:00-18:00, Sa 08:00-12:00',
-  priceRange: '$$',
-  sameAs: [
-    'https://wa.me/543644598253?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios',
-    'https://www.facebook.com/profile.php?id=100064195952988'
-  ],
-  services: [
-    'Control de Plagas',
-    'Fumigación',
-    'Desinsectación',
-    'Desratización',
-    'Desinfección',
-    'Saneamiento Ambiental',
-    'Control de Roedores',
-    'Control de Insectos',
-    'Fumigación de Viviendas',
-    'Fumigación Comercial',
-    'Fumigación Industrial'
-  ],
-  areasServed: [
-    'Pampa del Infierno',
-    'Chaco',
-    'Región NEA',
-    'Noroeste Argentino',
-    'Argentina'
-  ]
+const { title = seo.title, description = seo.description } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE_URL).toString();
+const og = await getImage({ src: heroImage, width: 1200, height: 630, format: 'jpeg' });
+const ogImage = new URL(og.src, Astro.site ?? SITE_URL).toString();
+const ogWidth = og.attributes.width ?? 1200;
+const ogHeight = og.attributes.height ?? 630;
+const logoUrl = `${SITE_URL}/logo.png`;
+const ogAlt = 'Técnico de RAMSER S.A.S realizando un tratamiento de fumigación';
+
+const graph = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'WebSite',
+			'@id': `${SITE_URL}/#website`,
+			url: `${SITE_URL}/`,
+			name: business.name,
+			inLanguage: 'es-AR',
+			publisher: { '@id': `${SITE_URL}/#business` },
+		},
+		{
+			'@type': 'LocalBusiness',
+			'@id': `${SITE_URL}/#business`,
+			name: business.name,
+			legalName: business.legalName,
+			url: `${SITE_URL}/`,
+			telephone: business.phoneIntl,
+			email: business.email,
+			logo: logoUrl,
+			image: ogImage,
+			description,
+			priceRange: business.priceRange,
+			address: { '@type': 'PostalAddress', ...business.address },
+			geo: { '@type': 'GeoCoordinates', ...business.geo },
+			openingHoursSpecification: hours.spec.map((h) => ({
+				'@type': 'OpeningHoursSpecification',
+				dayOfWeek: h.days,
+				opens: h.opens,
+				closes: h.closes,
+			})),
+			areaServed: business.areasServed.map((name) => ({ '@type': 'Place', name })),
+			hasOfferCatalog: {
+				'@type': 'OfferCatalog',
+				name: 'Servicios de Fumigación y Saneamiento',
+				itemListElement: offeredServices.map((name) => ({
+					'@type': 'Offer',
+					itemOffered: { '@type': 'Service', name },
+				})),
+			},
+			sameAs: [business.facebook],
+		},
+		{
+			'@type': 'WebPage',
+			'@id': `${canonical}#webpage`,
+			url: canonical,
+			name: title,
+			description,
+			inLanguage: 'es-AR',
+			isPartOf: { '@id': `${SITE_URL}/#website` },
+			about: { '@id': `${SITE_URL}/#business` },
+		},
+	],
 };
 ---
 
 <!doctype html>
-<html lang="es" class="!scroll-smooth">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={seo.keywords} />
+		<meta name="author" content={business.name} />
+		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+		<meta name="theme-color" content="#F1ECE2" />
 		<link rel="icon" type="image/png" href="/logo.png" />
 		<link rel="canonical" href={canonical} />
-		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-		<meta name="theme-color" content="#16a34a" />
-		<meta name="author" content="RAMSER S.A.S" />
-		<meta name="copyright" content="RAMSER S.A.S" />
-		<meta name="keywords" content={keywords} />
-		<!-- Keywords específicas para fumigación y saneamiento -->
-		<meta name="keywords" content="fumigación, control de plagas, desinsectación, desratización, saneamiento ambiental, Pampa del Infierno, Chaco, fumigador, exterminador, plagas, roedores, insectos, desinfección, empresa fumigación, fumigación viviendas, fumigación comercial, fumigación industrial, control roedores, control insectos, habilitación provincial, NEA, noroeste argentino" />
-		
-		<!-- Open Graph -->
+
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="es_AR" />
 		<meta property="og:site_name" content="RAMSER S.A.S - Saneamiento Ambiental" />
@@ -81,137 +103,101 @@ const business = {
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:image" content={ogImage} />
-		<meta property="og:image:alt" content="RAMSER S.A.S - Empresa de Fumigación y Saneamiento Ambiental en Pampa del Infierno, Chaco" />
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
-		
-		<!-- Twitter -->
+		<meta property="og:image:alt" content={ogAlt} />
+		<meta property="og:image:width" content={String(ogWidth)} />
+		<meta property="og:image:height" content={String(ogHeight)} />
+
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
-		<meta name="twitter:image:alt" content="RAMSER S.A.S - Fumigación y Control de Plagas" />
-		
-		<!-- Preconnect/Performance hints -->
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		
-		<!-- Local Business Schema -->
-		<script type="application/ld+json">{JSON.stringify({
-		  '@context': 'https://schema.org',
-		  '@type': 'LocalBusiness',
-		  '@id': `${business.url}#business`,
-		  name: business.name,
-		  legalName: business.legalName,
-		  alternateName: 'RamSer Fumigaciones',
-		  url: business.url,
-		  telephone: business.telephone,
-		  email: business.email,
-		  image: ogImage,
-		  logo: ogImage,
-		  description: description,
-		  priceRange: business.priceRange,
-		  openingHours: business.openingHours,
-		  areaServed: business.areasServed.map(area => ({
-		    '@type': 'Place',
-		    name: area
-		  })),
-		  hasOfferCatalog: {
-		    '@type': 'OfferCatalog',
-		    name: 'Servicios de Fumigación y Saneamiento',
-		    itemListElement: business.services.map(service => ({
-		      '@type': 'Offer',
-		      itemOffered: {
-		        '@type': 'Service',
-		        name: service
-		      }
-		    }))
-		  },
-		  address: {
-		    '@type': 'PostalAddress',
-		    streetAddress: business.address.streetAddress,
-		    addressLocality: business.address.addressLocality,
-		    addressRegion: business.address.addressRegion,
-		    addressCountry: business.address.addressCountry,
-		    postalCode: business.address.postalCode
-		  },
-		  geo: {
-		    '@type': 'GeoCoordinates',
-		    latitude: business.geo.latitude,
-		    longitude: business.geo.longitude
-		  },
-		  sameAs: business.sameAs,
-		  contactPoint: {
-		    '@type': 'ContactPoint',
-		    telephone: business.telephone,
-		    contactType: 'customer service',
-		    availableLanguage: 'Spanish',
-		    areaServed: 'AR'
-		  }
-		})}</script>
+		<meta name="twitter:image:alt" content={ogAlt} />
 
-		<!-- Service Schema -->
-		<script type="application/ld+json">{JSON.stringify({
-		  '@context': 'https://schema.org',
-		  '@type': 'Service',
-		  name: 'Fumigación y Control de Plagas',
-		  provider: {
-		    '@type': 'LocalBusiness',
-		    name: business.name,
-		    url: business.url
-		  },
-		  areaServed: business.areasServed.map(area => ({
-		    '@type': 'Place',
-		    name: area
-		  })),
-		  serviceType: 'Control de Plagas y Saneamiento Ambiental',
-		  description: 'Servicios profesionales de fumigación, control de plagas, desinsectación, desratización y saneamiento ambiental en la región NEA.',
-		  offers: {
-		    '@type': 'Offer',
-		    price: 'Consultar',
-		    priceCurrency: 'ARS',
-		    availability: 'https://schema.org/InStock'
-		  }
-		})}</script>
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(graph)} />
 
-		<!-- Organization Schema -->
-		<script type="application/ld+json">{JSON.stringify({
-		  '@context': 'https://schema.org',
-		  '@type': 'Organization',
-		  name: business.name,
-		  url: business.url,
-		  logo: ogImage,
-		  contactPoint: {
-		    '@type': 'ContactPoint',
-		    telephone: business.telephone,
-		    contactType: 'customer service',
-		    areaServed: 'AR',
-		    availableLanguage: 'Spanish'
-		  },
-		  address: {
-		    '@type': 'PostalAddress',
-		    streetAddress: business.address.streetAddress,
-		    addressLocality: business.address.addressLocality,
-		    addressRegion: business.address.addressRegion,
-		    addressCountry: business.address.addressCountry
-		  }
-		})}</script>
-		
-		<title>{title}</title>
+		<!-- Hero hidden state is applied only when JS runs and motion is allowed; fail-safe removes it. -->
+		<script is:inline>
+			if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				document.documentElement.classList.add('js');
+				setTimeout(function () {
+					document.documentElement.classList.remove('js');
+				}, 3000);
+			}
+		</script>
 	</head>
-	<body>
-		<Header/>
-		<slot />
+	<body class="bg-paper font-sans text-ink antialiased">
+		<a
+			href="#contenido"
+			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-ink focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-paper"
+		>
+			Saltar al contenido
+		</a>
+		<Header />
+		<main id="contenido">
+			<slot />
+		</main>
+		<Footer />
+		<StickyBar />
+		<script>
+			import '../scripts/motion';
+		</script>
 	</body>
 </html>
+
 <style is:global>
 	:root {
-		color-scheme: dark;
+		color-scheme: light;
 	}
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
+		font-family: 'Public Sans Variable', ui-sans-serif, system-ui, sans-serif;
+		background: #f1ece2;
+		-webkit-text-size-adjust: 100%;
+	}
+	html.menu-open {
+		overflow: hidden;
+	}
+	body {
+		font-size: 1.0625rem;
+		line-height: 1.6;
+	}
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
+	}
+	section[id] {
+		scroll-margin-top: 4.5rem;
+	}
+	/* Hidden initial states exist only when JS added the `js` class (3s fail-safe removes it). */
+	html.js [data-hero-photo] {
+		clip-path: inset(100% 0 0 0);
+	}
+	html.js [data-split],
+	html.js [data-hero-cell] {
+		visibility: hidden;
+	}
+	.display {
+		font-family: 'Instrument Serif', Georgia, serif;
+		font-weight: 400;
+		letter-spacing: -0.01em;
+	}
+	.mono-label {
+		font-family: 'IBM Plex Mono', ui-monospace, monospace;
+		font-size: 0.75rem;
+		line-height: 1.4;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+	:focus-visible {
+		outline: 2px solid #a9472a;
+		outline-offset: 3px;
+	}
+	.on-ink :focus-visible,
+	.on-photo :focus-visible {
+		outline-color: #f1ece2;
+	}
+	/* Hairline that can be drawn on scroll. */
+	[data-rule] {
+		transform-origin: left center;
 	}
 </style>
-

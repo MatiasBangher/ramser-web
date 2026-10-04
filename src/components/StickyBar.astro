@@ -1,0 +1,34 @@
+---
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { business, waLink } from '../data/site';
+---
+
+<div
+	data-sticky-bar
+	class="on-ink fixed inset-x-0 bottom-0 z-40 border-t border-paper/30 bg-ink text-paper transition-transform duration-300 data-[hidden=true]:translate-y-full motion-reduce:transition-none md:hidden"
+>
+	<a
+		href={waLink('bar')}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="mono-label flex h-12 items-center justify-center gap-2.5 px-5"
+	>
+		<WhatsAppIcon class="h-4 w-4" />
+		WhatsApp {business.phoneDisplay} →
+	</a>
+</div>
+
+<script>
+	const bar = document.querySelector<HTMLElement>('[data-sticky-bar]');
+	const target = document.getElementById('contacto');
+	if (bar && target && 'IntersectionObserver' in window) {
+		new IntersectionObserver(
+			([entry]) => {
+				const hide = entry.isIntersecting;
+				bar.dataset.hidden = String(hide);
+				bar.toggleAttribute('inert', hide);
+			},
+			{ threshold: 0.15 },
+		).observe(target);
+	}
+</script>

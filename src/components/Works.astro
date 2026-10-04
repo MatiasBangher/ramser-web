@@ -1,0 +1,81 @@
+---
+import Photo from './Photo.astro';
+import SectionHead from './SectionHead.astro';
+import { gallery } from '../data/site';
+
+// Contact-sheet layout: asymmetric spans + vertical offsets (desktop). fum2 lives in the field band.
+const items = gallery.slice(1);
+const layout = [
+	'md:col-span-5',
+	'md:col-span-4 md:col-start-7 md:mt-28',
+	'md:col-span-4',
+	'md:col-span-4 md:mt-16',
+	'md:col-span-4 md:mt-32',
+];
+---
+
+<section id="trabajos" aria-labelledby="trabajos-titulo" class="mx-auto w-full max-w-page px-5 pb-20 pt-20 md:px-10 md:pb-32 md:pt-28">
+	<SectionHead index="04" label="Trabajos" title="Nuestros Trabajos" id="trabajos-titulo" />
+
+	<ul class="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 md:mt-20 md:grid-cols-12 md:gap-y-16">
+		{
+			items.map((item, i) => (
+				<li class={layout[i]}>
+					<figure data-clip={i % 2 === 0 ? 'left' : 'up'}>
+						<button
+							type="button"
+							data-lightbox-open
+							aria-label={`Ver foto: ${item.caption}`}
+							class="block w-full cursor-zoom-in"
+						>
+							<Photo
+								image={item.image}
+								alt={item.alt}
+								widths={[320, 480, 640, 734]}
+								sizes="(min-width: 768px) 40vw, calc(100vw - 2.5rem)"
+								class="aspect-[3/4]"
+							/>
+						</button>
+						<figcaption class="mono-label mt-2 text-ink-2">FIG. {String(i + 7).padStart(2, '0')} — {item.caption}</figcaption>
+					</figure>
+				</li>
+			))
+		}
+	</ul>
+
+	<dialog id="lightbox" data-lightbox aria-label="Foto ampliada" class="m-auto max-h-[92svh] w-[min(92vw,720px)] border border-ink bg-paper p-0 text-ink backdrop:bg-ink/80">
+		<form method="dialog" class="flex items-center justify-between border-b border-rule px-4 py-2">
+			<p data-lightbox-caption class="mono-label text-ink-2"></p>
+			<button class="mono-label py-2 pl-4 text-soil underline underline-offset-[6px]" autofocus>Cerrar</button>
+		</form>
+		<img data-lightbox-img alt="" class="block max-h-[78svh] w-full object-contain" />
+	</dialog>
+</section>
+
+<script>
+	const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+	const img = dialog?.querySelector<HTMLImageElement>('[data-lightbox-img]');
+	const cap = dialog?.querySelector<HTMLElement>('[data-lightbox-caption]');
+	let opener: HTMLElement | null = null;
+
+	document.querySelectorAll<HTMLButtonElement>('[data-lightbox-open]').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const photo = btn.querySelector('img');
+			const figcap = btn.closest('figure')?.querySelector('figcaption');
+			if (!dialog || !img || !photo) return;
+			opener = btn;
+			// Largest generated candidate from the srcset, falling back to the current source.
+			const candidates = (photo.getAttribute('srcset') ?? '').split(',').map((c) => c.trim().split(' ')[0]).filter(Boolean);
+			img.src = candidates[candidates.length - 1] ?? photo.currentSrc;
+			img.alt = photo.alt;
+			if (cap) cap.textContent = figcap?.textContent ?? '';
+			dialog.showModal();
+		});
+	});
+
+	dialog?.addEventListener('click', (e) => {
+		if (e.target === dialog) dialog.close();
+	});
+	// Native <dialog> handles Esc; return focus to the opener on any close.
+	dialog?.addEventListener('close', () => opener?.focus());
+</script>
